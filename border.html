@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            width:100%;
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        @property --angle{
+            syntax: "<angle>";
+            initial-value:0deg;
+            inherits:false;
+        }
+
+        .me{
+            width:200px;
+            height:200px;
+            background-color:brown; 
+        }
+
+        .me::after , .me::before{
+            content:"";
+            position:absolute;
+            background-image: conic-gradient(from var(--angle),transparent 0%,blue,green,yellow,pink,orange,blue);
+            width:200px;
+            height:200px;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+            z-index:-1;
+            padding:3px;
+            border-radius:5px;
+            animation-name:border;
+            animation-duration:2s;
+            animation-iteration-count:infinite;
+            animation-timing-function: linear;
+            
+ }
+
+        @keyframes border{
+            0%{
+                --angle:0deg;
+            }
+            100%{
+                --angle:360deg;
+            }
+        }
+
+        .me::before{
+            filter:blur(1.5rem);
+            opacity:0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="me">
+
+    </div>
+</body>
+</html>
